@@ -1,13 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 #forex news
-from IPython.display import display, HTML
-display(HTML("<style>.container { width:100% !important; }</style>"))
-
 
 import os
 import time
@@ -23,7 +20,7 @@ from selenium.webdriver.common.by import By
 def job():
     site  = SeleniumConnection(False)
     site.get_url('https://www.forexfactory.com/calendar')
-    time.sleep(2)
+#     time.sleep(4)
 
     rows = site.find_element(By.CLASS_NAME, 'calendar__table  ').find_elements(By.TAG_NAME, 'tr')[1:]
     rowCon = []
@@ -37,7 +34,7 @@ def job():
             forecast = row.find_element(By.CSS_SELECTOR,'.calendar__cell.calendar__forecast.forecast').text
             previous = row.find_element(By.CSS_SELECTOR,'.calendar__cell.calendar__previous.previous').text
             rowCon.append({'date_':date, 'time':time, 'currency': currency, 'event':event, 'actual':actual, 'forecast':forecast, 'previous':previous})
-
+#     time.sleep(4)
     site.close()
     dff = pd.DataFrame(rowCon)
 
@@ -71,7 +68,7 @@ def job():
 #schedule.every(25).minutes.do(job)
 # schedule.every().hour.do(job)
 # schedule.every().day.at("10:30").do(job)
-schedule.every().sunday.at("13:00").do(job)
+schedule.every().sunday.at("13:35").do(job)
 # schedule.every().wednesday.at("13:15").do(job)
 # schedule.every().day.at("12:42", "Europe/Amsterdam").do(job)
 # schedule.every().minute.at(":17").do(job)
@@ -79,10 +76,4 @@ schedule.every().sunday.at("13:00").do(job)
 while True:
     schedule.run_pending()
     #time.sleep(1)
-
-
-# In[ ]:
-
-
-
 
