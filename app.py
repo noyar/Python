@@ -99,7 +99,7 @@ def barchartData():
     fig = px.bar(cot_chart, x='currency', y=['long%', 'short%'], barmode='stack', 
                 color_discrete_sequence=['#00FF00', '#FF0000'])
     fig.update_layout(
-    title='COT Report as of ' + cot_chart.date.max().strftime('%Y-%m-%d'),
+    title='COT Report as of '# + cot_chart.date.max().strftime('%Y-%m-%d'),
     xaxis_title=None, 
     yaxis_title=None,
     showlegend = False,
